@@ -123,19 +123,19 @@ void quickres_create_dock()
 	layout->setContentsMargins(6, 3, 6, 3);
 	layout->setSpacing(6);
 
-	QLabel *label = new QLabel(QStringLiteral("\xE2\x80\x94"), widget);
+	QLabel *label = new QLabel(QStringLiteral("\u2014"), widget);
 	// texto inicial: um traço até o primeiro refresh
 	label->setMinimumWidth(84);
 	label->setAlignment(Qt::AlignCenter);
 
 	QComboBox *combo = new QComboBox(widget);
 	combo->setToolTip(localeText("Toolbar.Combo.Tooltip", "Apply a resolution preset"));
-	combo->addItem(localeText("Toolbar.Placeholder", "Resolu\xC3\xA7\xC3\xA3\xE2\x80\xA6"));
+	combo->addItem(localeText("Toolbar.Placeholder", "Resolu\u00E7\u00E3o\u2026"));
 	for (const Preset &preset : kPresets)
 		combo->addItem(localeText(preset.localeKey, preset.fallback));
 
 	QPushButton *toggleButton = new QPushButton(widget);
-	toggleButton->setText(QStringLiteral("\xE2\x87\x84")); /* ⇄ */
+	toggleButton->setText(QStringLiteral("\u21C4")); /* ⇄ */
 	toggleButton->setToolTip(
 		localeText("Toolbar.Toggle.Tooltip",
 			   "Switch horizontal <-> vertical (keeps current quality)"));
@@ -150,11 +150,11 @@ void quickres_create_dock()
 		if (!obs_get_video_info(&ovi))
 			return;
 
-		label->setText(QString(QStringLiteral("%1\xC3\x97%2"))
+		label->setText(QString(QStringLiteral("%1\u00D7%2"))
 				       .arg(ovi.output_width)
 				       .arg(ovi.output_height));
 		label->setToolTip(
-			QString(QStringLiteral("Canvas %1\xC3\x97%2 \xC2\xB7 Sa\xC3\xADda %3\xC3\x97%4"))
+			QString(QStringLiteral("Canvas %1\u00D7%2 \u00B7 Sa\u00EDda %3\u00D7%4"))
 				.arg(ovi.base_width)
 				.arg(ovi.base_height)
 				.arg(ovi.output_width)
@@ -229,7 +229,7 @@ void quickres_create_dock()
 
 	refresh();
 
-	const QString title = localeText("Toolbar.Title", "Resolu\xC3\xA7\xC3\xA3o");
+	const QString title = localeText("Toolbar.Title", "Resolu\u00E7\u00E3o");
 	const QByteArray titleBytes = title.toUtf8();
 	if (!obs_frontend_add_dock_by_id("easy-aspect-ratio-changer", titleBytes.constData(), widget))
 		obs_log(LOG_WARNING, "could not register resolution toolbar dock");
