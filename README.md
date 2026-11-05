@@ -46,8 +46,8 @@ oficial e já vem com o pipeline pronto:
    git init
    git add .
    git commit -m "Toolbar de Resolução para OBS Studio"
-   git remote add origin https://github.com/victoralexbr/meu-plugin-obs.git
-   git push -u origin main
+   git remote add origin https://github.com/victoralexbr/easy-aspect-ratio-changer-obs.git
+   git push -u origin main --tags
    ```
 2. O GitHub Actions roda o workflow **Push → Build Project** e compila para
    **Windows x64, macOS universal e Ubuntu 24.04** — os artefatos ficam na aba *Actions*.
