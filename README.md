@@ -1,4 +1,4 @@
-# Resolution Toolbar (Toolbar de Resolução) para OBS Studio
+# Easy Aspect Ratio Changer for OBS (Toolbar de Resolução)
 
 Plugin nativo do OBS Studio: uma **toolbar dentro da interface do OBS** para trocar
 resolução sem abrir a janela de configurações de vídeo.
@@ -28,7 +28,7 @@ Comportamentos de segurança:
 Baixe o último release em **GitHub Releases** e:
 
 - **Windows**: rode o instalador `.exe`, **ou** extraia o `.zip` e copie a pasta
-  `resolution-toolbar` para `%APPDATA%\obs-studio\obs-plugins\` (ou abra o OBS e
+  `easy-aspect-ratio-changer-obs` para `%APPDATA%\obs-studio\obs-plugins\` (ou abra o OBS e
   use *Add-Ons → Plugin/Aplicativo* se preferir arrastar).
 - **macOS**: rode o `.pkg` ou extraia o `.tar.xz` em `~/Library/Application Support/obs-studio/plugins/`.
 - **Linux**: extraia o `.tar.xz` para `~/.config/obs-studio/plugins/`.

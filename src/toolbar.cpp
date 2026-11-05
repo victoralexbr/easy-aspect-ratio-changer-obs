@@ -231,7 +231,7 @@ void quickres_create_dock()
 
 	const QString title = localeText("Toolbar.Title", "Resolu\xC3\xA7\xC3\xA3o");
 	const QByteArray titleBytes = title.toUtf8();
-	if (!obs_frontend_add_dock_by_id("quick-res-toolbar", titleBytes.constData(), widget))
+	if (!obs_frontend_add_dock_by_id("easy-aspect-ratio-changer", titleBytes.constData(), widget))
 		obs_log(LOG_WARNING, "could not register resolution toolbar dock");
 	else
 		obs_log(LOG_INFO, "resolution toolbar dock registered");

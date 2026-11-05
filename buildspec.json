@@ -33,11 +33,11 @@
     },
     "platformConfig": {
         "macos": {
-            "bundleId": "com.example.resolution-toolbar"
+            "bundleId": "com.victoralexbr.easy-aspect-ratio-changer-obs"
         }
     },
-    "name": "resolution-toolbar",
-    "displayName": "Resolution Toolbar",
+    "name": "easy-aspect-ratio-changer-obs",
+    "displayName": "Easy Aspect Ratio Changer for OBS",
     "version": "0.1.0",
     "author": "victoralexbr",
     "website": "https://www.youtube.com/@victoralexbr",
