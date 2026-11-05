@@ -46,7 +46,7 @@ oficial e já vem com o pipeline pronto:
    git init
    git add .
    git commit -m "Toolbar de Resolução para OBS Studio"
-   git remote add origin https://github.com/SEU-USUARIO/meu-plugin-obs.git
+   git remote add origin https://github.com/victoralexbr/meu-plugin-obs.git
    git push -u origin main
    ```
 2. O GitHub Actions roda o workflow **Push → Build Project** e compila para
@@ -54,8 +54,8 @@ oficial e já vem com o pipeline pronto:
 3. Para publicar versões: crie uma **tag** no formato `1.0.0` (sem o `v`) e faça `push`.
    O workflow cria um **release draft** com `.zip`, `.exe` (instalador), `.pkg` e `.deb`,
    mais checksums. Revise e publique.
-4. Sem preenchidos: `buildspec.json` (`name`, `displayName`, `version`, `author`,
-   `website`, `email`) e os cabeçalhos de copyright em `src/*.cpp`.
+4. Sem placeholders pendentes: `buildspec.json` e os cabeçalhos de copyright em
+   `src/*` já estão preenchidos com autor `victoralexbr`.
 
 ### Requisitos de build
 
