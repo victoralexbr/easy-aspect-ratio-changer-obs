@@ -16,7 +16,7 @@ resolução sem abrir a janela de configurações de vídeo.
 | Dropdown `Resolução…` | Aplica presets prontos: **1080p H/V** e **720p H/V** (muda Canvas **e** Saída, igual a config manual de vídeo) |
 | Botão `⇄` | Alterna **horizontal ↔ vertical** em 1 clique, mantendo a qualidade atual (funciona com qualquer resolução, tipo 1440p) |
 | Visor `1920×1080` | Mostra a resolução de saída atual (tooltip mostra o Canvas também) |
-| Botão `…` / clique direito | Escolhe o layout da barra: **Automático / Horizontal / Empilhada** (persistido entre sessões) |
+| Botão `?` / clique direito | Escolhe o layout da barra: **Automático / Horizontal / Empilhada** + item **Sobre…** (persistido entre sessões) |
 | Timer interno | Re-sincroniza o visor a cada 2s se você mudar a resolução por fora |
 
 Comportamentos de segurança:
@@ -41,7 +41,7 @@ Baixe o último release em **GitHub Releases** e:
 
 Reinicie o OBS. A toolbar aparece em **View → Docks → easy-aspect-ratio** (dock flutuante,
 arraste pra onde quiser). Quando a dock estiver estreita e alta (ex.: apoiada na lateral) a
-barra fica **empilhada** automaticamente; use o botão `…` ou o clique-direito na barra para
+barra fica **empilhada** automaticamente; use o botão `?` ou o clique-direito na barra para
 escolher **Automático / Horizontal / Empilhada** a qualquer momento. Ao trocar a resolução o
 plugin também **reposiciona o zoom da pré-view** (ajuste automático à janela).
 

@@ -28,6 +28,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>
 #include <QComboBox>
 #include <QContextMenuEvent>
 #include <QCursor>
+#include <QDesktopServices>
 #include <QHBoxLayout>
 #include <QBoxLayout>
 #include <QLabel>
@@ -37,6 +38,7 @@ with this program. If not, see <https://www.gnu.org/licenses/>
 #include <QResizeEvent>
 #include <QSettings>
 #include <QTimer>
+#include <QUrl>
 #include <QWidget>
 #include <functional>
 
@@ -67,6 +69,12 @@ QString localeText(const char *key, const char *fallback)
 		return QString::fromUtf8(value);
 	return QString::fromUtf8(fallback);
 }
+
+/* Link de apoio exibido no "Sobre…" e usado no clique da frase. */
+const char kSupportUrl[] = "https://livepix.gg/victoralexbr";
+const char kSupportText[] =
+	"Se fui \u00FAtil considere ajudar no https://livepix.gg/victoralexbr "
+	"com qualquer valor";
 
 /* Avisa que a resolução não pode mudar com saída ativa: o próprio OBS
  * bloqueia (ResetVideo devolve OBS_VIDEO_CURRENTLY_ACTIVE). */
@@ -158,7 +166,7 @@ public:
 		applyCurrentMode();
 	}
 
-	/* Menu "três pontinhos": Automático / Horizontal / Empilhado. */
+	/* Menu "três pontinhos": layout + Sobre. */
 	void showLayoutMenu(const QPoint &globalPos)
 	{
 		QMenu menu(this);
@@ -200,7 +208,36 @@ public:
 				 this,
 				 [this]() { setManualMode(LayoutMode::Vertical); });
 
+		/* Última linha do menu: "Sobre…" com janela de apoio. */
+		menu.addSeparator();
+		QAction *aboutAction =
+			menu.addAction(localeText("Toolbar.About.Menu", "About…"));
+		QObject::connect(aboutAction, &QAction::triggered, this,
+				 [this]() { showAboutDialog(); });
+
 		menu.exec(globalPos);
+	}
+
+	/* Janela "Sobre": frase de apoio; clicar na frase abre o link. */
+	void showAboutDialog()
+	{
+		const QUrl supportUrl(QStringLiteral(kSupportUrl));
+		const QString phrase = localeText("Toolbar.About.Text", kSupportText);
+		const QString html =
+			QString("<a href=\"%1\">%2</a>")
+				.arg(supportUrl.toString(), phrase.toHtmlEscaped());
+
+		QMessageBox box(this);
+		box.setWindowTitle(localeText("Toolbar.About.Title", "About"));
+		box.setIcon(QMessageBox::Information);
+		box.setTextFormat(Qt::RichText);
+		box.setText(html);
+		box.setStandardButtons(QMessageBox::Close);
+		QObject::connect(&box, &QMessageBox::linkActivated, &box,
+				 [](const QString &link) {
+					 QDesktopServices::openUrl(QUrl(link));
+				 });
+		box.exec();
 	}
 
 protected:
@@ -324,11 +361,11 @@ void quickres_create_dock()
 			   "Switch horizontal <-> vertical (keeps current quality)"));
 
 	QPushButton *moreButton = new QPushButton(widget);
-	moreButton->setText(QStringLiteral("\u2026")); /* … (três pontinhos) */
+	moreButton->setText(QStringLiteral("?")); /* ajuda: layout e Sobre */
 	moreButton->setFlat(true);
 	moreButton->setFixedWidth(28);
-	moreButton->setToolTip(localeText("Toolbar.Layout.Tooltip",
-					  "Toolbar layout options"));
+	moreButton->setToolTip(localeText("Toolbar.Help.Tooltip",
+					  "Toolbar layout and about"));
 
 	widget->box()->addWidget(label);
 	widget->box()->addWidget(combo, 1);
