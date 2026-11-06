@@ -28,7 +28,8 @@ with this program. If not, see <https://www.gnu.org/licenses/>
 #include <QComboBox>
 #include <QContextMenuEvent>
 #include <QCursor>
-#include <QDesktopServices>
+#include <QDialog>
+#include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QBoxLayout>
 #include <QLabel>
@@ -38,7 +39,6 @@ with this program. If not, see <https://www.gnu.org/licenses/>
 #include <QResizeEvent>
 #include <QSettings>
 #include <QTimer>
-#include <QUrl>
 #include <QWidget>
 #include <functional>
 
@@ -221,23 +221,23 @@ public:
 	/* Janela "Sobre": frase de apoio; clicar na frase abre o link. */
 	void showAboutDialog()
 	{
-		const QUrl supportUrl(QStringLiteral(kSupportUrl));
 		const QString phrase = localeText("Toolbar.About.Text", kSupportText);
 		const QString html =
 			QString("<a href=\"%1\">%2</a>")
-				.arg(supportUrl.toString(), phrase.toHtmlEscaped());
+				.arg(QString::fromUtf8(kSupportUrl),
+				     phrase.toHtmlEscaped());
 
-		QMessageBox box(this);
-		box.setWindowTitle(localeText("Toolbar.About.Title", "About"));
-		box.setIcon(QMessageBox::Information);
-		box.setTextFormat(Qt::RichText);
-		box.setText(html);
-		box.setStandardButtons(QMessageBox::Close);
-		QObject::connect(&box, &QMessageBox::linkActivated, &box,
-				 [](const QString &link) {
-					 QDesktopServices::openUrl(QUrl(link));
-				 });
-		box.exec();
+		QDialog dialog(this);
+		dialog.setWindowTitle(localeText("Toolbar.About.Title", "About"));
+		QVBoxLayout *dialogLayout = new QVBoxLayout(&dialog);
+		QLabel *message = new QLabel(html, &dialog);
+		message->setTextFormat(Qt::RichText);
+		message->setOpenExternalLinks(true);
+		message->setTextInteractionFlags(Qt::TextBrowserInteraction);
+		message->setWordWrap(true);
+		message->setAlignment(Qt::AlignCenter);
+		dialogLayout->addWidget(message);
+		dialog.exec();
 	}
 
 protected:
