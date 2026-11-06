@@ -1,5 +1,7 @@
 # Easy Aspect Ratio Changer for OBS (Toolbar de Resolução)
 
+**Se fui útil considere ajudar no https://livepix.gg/victoralexbr com qualquer valor** 💙
+
 Plugin nativo do OBS Studio: uma **toolbar dentro da interface do OBS** para trocar
 resolução sem abrir a janela de configurações de vídeo.
 
